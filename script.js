@@ -81,3 +81,99 @@ document.addEventListener("keydown", event => {
 // Año automático del pie de página.
 const yearElement = document.getElementById("year");
 if (yearElement) yearElement.textContent = new Date().getFullYear();
+
+
+// GALERÍAS EMERGENTES DE TRABAJOS
+
+const workGalleryModal = document.getElementById("workGalleryModal");
+const workGalleryTitle = document.getElementById("workGalleryTitle");
+const workGalleryGrid = document.getElementById("workGalleryGrid");
+
+const workGalleries = {
+  terminaciones: {
+    title: "Trabajos de terminaciones",
+    images: []
+  },
+  obra: {
+    title: "Trabajos de obra",
+    images: []
+  },
+  renovaciones: {
+    title: "Trabajos de renovaciones",
+    images: [
+      "imagenes/a18c1c94-49d2-4f78-8ff7-0c9958202c3a.jpg",
+      "imagenes/b8667ff1-c057-4130-a53a-852e870dbc17.jpg",
+      "imagenes/fce1147f-d13f-424a-849d-db1f096874ac.jpg"
+    ]
+  }
+};
+
+let lastGalleryTrigger = null;
+
+function openWorkGallery(category, trigger) {
+  const gallery = workGalleries[category];
+
+  if (!gallery) return;
+
+  lastGalleryTrigger = trigger;
+  workGalleryTitle.textContent = gallery.title;
+  workGalleryGrid.replaceChildren();
+
+  if (gallery.images.length === 0) {
+    const message = document.createElement("p");
+    message.textContent =
+      "Próximamente agregaremos trabajos de esta categoría.";
+    workGalleryGrid.appendChild(message);
+  } else {
+    gallery.images.forEach((src, index) => {
+      const image = document.createElement("img");
+      image.src = src;
+      image.alt = `${gallery.title} - trabajo ${index + 1}`;
+      image.loading = "lazy";
+      workGalleryGrid.appendChild(image);
+    });
+  }
+
+  workGalleryModal.classList.add("is-open");
+  workGalleryModal.setAttribute("aria-hidden", "false");
+  document.body.classList.add("work-gallery-lock");
+
+  workGalleryModal.querySelector(".work-gallery-close").focus();
+}
+
+function closeWorkGallery() {
+  workGalleryModal.classList.remove("is-open");
+  workGalleryModal.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("work-gallery-lock");
+
+  if (lastGalleryTrigger) {
+    lastGalleryTrigger.focus();
+  }
+}
+
+document.querySelectorAll(".gallery-trigger").forEach(card => {
+  card.addEventListener("click", () => {
+    openWorkGallery(card.dataset.gallery, card);
+  });
+
+  card.addEventListener("keydown", event => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openWorkGallery(card.dataset.gallery, card);
+    }
+  });
+});
+
+workGalleryModal.querySelectorAll("[data-close-work-gallery]").forEach(button => {
+  button.addEventListener("click", closeWorkGallery);
+});
+
+document.addEventListener("keydown", event => {
+  if (
+    event.key === "Escape" &&
+    workGalleryModal.classList.contains("is-open")
+  ) {
+    closeWorkGallery();
+  }
+});
+
