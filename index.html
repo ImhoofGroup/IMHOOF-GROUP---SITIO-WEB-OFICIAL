@@ -129,13 +129,52 @@
           <div><p class="eyebrow"><span></span> EXPERIENCIA EN OBRA</p><h2>El resultado<br><em>está a la vista.</em></h2></div>
           <p>Una muestra de trabajos realizados. Reemplazá estas imágenes por fotos reales de tus obras para mostrar tu experiencia.</p>
         </div>
-        <div class="work-grid">
-          <figure class="work-item work-large"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85" alt="Interior moderno terminado"><figcaption><span>01 / TERMINACIONES</span><strong>Detalles que hacen la diferencia</strong></figcaption></figure>
-          <figure class="work-item"><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=85" alt="Estructura de construcción"><figcaption><span>02 / OBRA</span><strong>Construcción y desarrollo</strong></figcaption></figure>
-          <figure class="work-item"><img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=85" alt="Ambiente renovado"><figcaption><span>03 / RENOVACIÓN</span><strong>Espacios renovados</strong></figcaption></figure>
+       
+<div class="work-grid">
+
+  <figure class="work-item work-large gallery-trigger" tabindex="0" role="button" aria-haspopup="dialog" data-gallery="terminaciones">
+    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85" alt="Interior moderno terminado">
+    <figcaption>
+      <span>01 / TERMINACIONES</span>
+      <strong>Detalles que hacen la diferencia</strong>
+    </figcaption>
+  </figure>
+
+  <figure class="work-item gallery-trigger" tabindex="0" role="button" aria-haspopup="dialog" data-gallery="obra">
+    <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=85" alt="Estructura de construcción">
+    <figcaption>
+      <span>02 / OBRA</span>
+      <strong>Construcción y desarrollo</strong>
+    </figcaption>
+  </figure>
+
+  <figure class="work-item gallery-trigger" tabindex="0" role="button" aria-haspopup="dialog" data-gallery="renovaciones">
+    <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=85" alt="Ambiente renovado">
+    <figcaption>
+      <span>03 / RENOVACIÓN</span>
+      <strong>Espacios renovados</strong>
+    </figcaption>
+  </figure>
+
         </div>
       </div>
-    </section>
+        </section>
+
+    <div class="work-gallery-modal" id="workGalleryModal" aria-hidden="true">
+      <div class="work-gallery-backdrop" data-close-work-gallery></div>
+
+      <section class="work-gallery-dialog" role="dialog" aria-modal="true" aria-labelledby="workGalleryTitle">
+
+        <button class="work-gallery-close" type="button" aria-label="Cerrar galería" data-close-work-gallery>×</button>
+
+        <p class="eyebrow dark"><span></span> IMHOOF GROUP / TRABAJOS</p>
+
+        <h2 id="workGalleryTitle">Trabajos</h2>
+
+        <div class="work-gallery-grid" id="workGalleryGrid"></div>
+
+      </section>
+    </div>
 
     <section class="contact section-pad" id="contacto">
       <div class="container contact-grid">
